@@ -30,7 +30,37 @@
 
 ## Установка
 
-Склонируй репозиторий в каталог навыков своего агента:
+### Через skills CLI
+
+Для этого способа нужен Node.js 22.20 или новее с командой `npx`.
+Node.js нужен только установщику. Сборка отчета использует Python и Git.
+
+Для установки в текущий проект выполни команду из его каталога:
+
+```bash
+npx skills add highwayman2014/av-code-diff-review --skill av-code-diff-review
+```
+
+Выбери агента в диалоге установщика.
+
+Для установки на уровне пользователя добавь `-g`:
+
+```bash
+npx skills add highwayman2014/av-code-diff-review --skill av-code-diff-review -g
+```
+
+Для просмотра доступных навыков без установки выполни:
+
+```bash
+npx skills add highwayman2014/av-code-diff-review --list
+```
+
+Установщик загружает файлы из GitHub. Для этого нужен доступ к сети.
+Подробнее см. в [документации skills CLI](https://github.com/vercel-labs/skills).
+
+### Через Git
+
+Если skills CLI не подходит, склонируй репозиторий в каталог навыков своего агента:
 
 ```bash
 git clone https://github.com/highwayman2014/av-code-diff-review.git <skills-dir>/av-code-diff-review
@@ -38,6 +68,8 @@ git clone https://github.com/highwayman2014/av-code-diff-review.git <skills-dir>
 
 Замени `<skills-dir>` на каталог навыков приложения.
 Не вкладывай навык в другой каталог с тем же именем.
+
+### Проверка установки
 
 Если приложение не обнаруживает навыки, передай агенту путь к `SKILL.md`.
 Если приложение загружает список навыков при запуске, перезапусти его.
