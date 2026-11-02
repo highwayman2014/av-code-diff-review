@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{TITLE}}</title>
+<style>
+:root{--bg:#ececec;--sheet:#fff;--code-bg:#f6f6f6;--aux-bg:#f6f3ec;--aux-hair:#e4dfd2;--ink:#171717;--body:#3a3a3a;--mute:#6b6b6b;--faint:#a3a3a3;--rule:#1f1f1f;--hair:#e5e5e5;--add:#1a7f37;--add-bg:#1a7f3712;--del:#b42318;--del-bg:#b4231812;--k:#5a32a3;--s:#8a4b0f;--q:#0550ae;--n:#0a6b74;--cm:#6e6e6e;--gut:46px;--measure:1100px;--mono:ui-monospace,"Cascadia Mono",Consolas,"SF Mono",Menlo,monospace;--sans:system-ui,"Segoe UI",-apple-system,Roboto,sans-serif}
+*{box-sizing:border-box}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/26px var(--sans)}
+main{max-width:1240px;margin:0 auto;padding:32px}
+.top{font:12px/16px var(--mono);color:var(--mute);margin:0 0 16px;overflow-wrap:anywhere}
+.m,.ov{background:var(--sheet);padding:32px 32px 40px;margin-bottom:32px}
+.ov{padding:20px 32px}.ov ol{margin:0;padding-left:20px;display:flex;flex-wrap:wrap;gap:4px 40px}.ov li{padding-left:4px}
+.ov a{font:600 14px var(--mono);color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair)}
+/* method heading stays on screen while its sheet is read */
+h2{position:sticky;top:0;z-index:2;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin:-32px -32px 0;padding:24px 32px 12px;background:var(--sheet);border-bottom:1px solid var(--hair);font:600 20px/28px var(--mono);overflow-wrap:anywhere}
+h2 small{font:400 13px var(--sans);color:var(--mute)}
+.up{margin-left:auto;font:400 13px var(--sans);color:var(--mute);text-decoration:none}.up:hover{color:var(--ink);text-decoration:underline}
+.path{font:12px/16px var(--mono);color:var(--mute);margin:16px 0 0;overflow-wrap:anywhere}
+.lead{font-size:17px;line-height:27px;color:var(--ink);margin:20px 0 40px;max-width:70ch;text-wrap:pretty}
+.u+.u,.sum+.u{margin-top:56px}.u,.sum{max-width:var(--measure)}
+.sum .blk:first-child{margin-top:0}.sum .blk+.blk{margin-top:12px}
+.g{display:grid;grid-template-columns:minmax(0,1fr)}
+/* code panel: grey; the 2px rule separates было and стало */
+.code{padding:10px 0;background:linear-gradient(var(--rule),var(--rule)) center/2px 100% no-repeat var(--code-bg)}
+.r,.rb{display:grid;grid-template-columns:1fr 1fr;column-gap:48px}
+.rb>div{min-width:0}
+.c{display:grid;grid-template-columns:var(--gut) minmax(0,1fr);font:13px/22px var(--mono);min-width:0}
+.c i{font-style:normal;font-size:11px;color:var(--mute);text-align:right;padding-right:12px;user-select:none}
+.c code{font:inherit;white-space:pre-wrap;overflow-wrap:anywhere;tab-size:4;padding-left:4ch;text-indent:-4ch}
+.add{background:var(--add-bg);box-shadow:inset 2px 0 var(--add)}
+.del{background:var(--del-bg);box-shadow:inset 2px 0 var(--del)}
+.cap,summary{font:12px/26px var(--mono);color:var(--mute);padding-left:var(--gut)}
+summary{cursor:pointer;list-style:none}summary:hover{color:var(--ink)}summary:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset:2px}::selection{background:#0550ae26}summary::-webkit-details-marker{display:none}
+/* explanation: white sheet, link to the unit in the gutter */
+.note{position:relative;max-width:70ch;padding-left:var(--gut)}
+.note.above{margin-bottom:16px}
+.ln{position:absolute;left:0;top:0;width:var(--gut);padding-right:14px;text-align:right;font:13px/26px var(--mono);color:var(--faint);text-decoration:none}.ln:hover{color:var(--ink)}
+.note p{margin:0 0 10px;text-wrap:pretty}.note p:last-child{margin:0}.note b{font-weight:600}
+.note .warn{color:var(--body)}.note .warn b{color:var(--del)}
+/* extra blocks: warm panel, content aligned with code text */
+.blk{margin-top:16px;padding:14px 24px 16px var(--gut);background:var(--aux-bg)}
+.blk>div:first-child{font:600 13px/18px var(--sans);color:var(--mute);margin-bottom:10px}
+.blk pre{margin:0;font:13px/22px var(--mono);white-space:pre-wrap}
+.flow{font:13px/22px var(--mono)}.flow span{color:var(--mute)}.flow b{font-weight:600}
+table{border-collapse:collapse;font-size:15px;line-height:22px}th{font:13px/18px var(--sans);color:var(--mute);text-align:left}th,td{padding:6px 32px 6px 0;border-bottom:1px solid var(--aux-hair)}tr:last-child td{border-bottom:0}
+.dg{display:block;max-width:100%;height:auto;color:var(--ink)}.dg rect{fill:var(--sheet);stroke:currentColor;stroke-width:1.2}.dg .new{stroke:var(--add)}.dg .old{stroke:var(--del);stroke-dasharray:4 3}.dg path{fill:none;stroke:var(--mute);stroke-width:1.2}.dg text{font:12px var(--mono);fill:currentColor}
+.k{color:var(--k)}.s{color:var(--s)}.q{color:var(--q)}.cm{color:var(--cm)}.n{color:var(--n)}.p{color:var(--mute)}
+/* added or removed method: one code column, no rule, no bar: the heading states it */
+.whole .u,.whole .sum{max-width:960px}.whole .code{background:var(--code-bg)}.whole .r,.whole .rb{grid-template-columns:minmax(0,1fr)}.whole .pad,.whole .rb>div:empty{display:none}.whole .add,.whole .del{background:none;box-shadow:none}.whole .del code{opacity:1}
+@media(max-width:760px){:root{--gut:40px}html{scroll-padding-top:96px}h2{margin:-20px -12px 0;padding:16px 12px 10px}.up{margin-left:0}.c i{padding-right:8px}.c code{text-indent:0;padding-left:0}.blk:has(svg){overflow-x:auto}.dg{max-width:none}.rb>div:not(:empty)::before{display:block;font:600 12px/24px var(--sans);color:var(--mute);padding-left:var(--gut);content:'было'}.rb>div+div:not(:empty)::before{content:'стало'}.whole .rb>div::before{content:none!important}main{padding:12px}.m,.ov{padding:20px 12px 28px}.note{padding-left:0}.ln{display:none}.blk{padding:12px}.code{background:var(--code-bg)}.r,.rb{grid-template-columns:minmax(0,1fr)}.r.eq .old,.pad,.rb>div:empty{display:none}.c{font-size:12px}}
+@media print{body{background:#fff}h2{position:static}.up,.ln{display:none}}
+</style>
+</head>
+<body>
+<main>
+{{BODY}}
+</main>
+<script>onbeforeprint=()=>document.querySelectorAll('details').forEach(d=>d.open=true)</script>
+</body>
+</html>

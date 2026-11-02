@@ -1,0 +1,4 @@
+interface:
+  display_name: "Разбор diff с объяснениями"
+  short_description: "HTML-отчеты по diff BSL с пояснениями и схемами"
+  default_prompt: "Используй $av-code-diff-review для визуального разбора изменений задачи по Git."
